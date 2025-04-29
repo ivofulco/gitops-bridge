@@ -46,7 +46,7 @@ locals {
   domain_name              = var.domain_name
   argo_workflows_subdomain = "argo-workflows"
   argo_workflows_host      = "${local.argo_workflows_subdomain}.${local.domain_name}"
-  route53_zone_arn = try(data.aws_route53_zone.this[0].arn, "")
+  route53_zone_arn         = try(data.aws_route53_zone.this[0].arn, "")
 
   gitops_addons_url      = "${var.gitops_addons_org}/${var.gitops_addons_repo}"
   gitops_addons_basepath = var.gitops_addons_basepath
@@ -126,7 +126,7 @@ locals {
   )
 
   argocd_apps = {
-    addons    = file("${path.module}/bootstrap/addons.yaml")
+    addons = file("${path.module}/bootstrap/addons.yaml")
   }
 
   tags = {

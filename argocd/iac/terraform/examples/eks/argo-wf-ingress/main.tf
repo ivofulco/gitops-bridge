@@ -44,12 +44,12 @@ locals {
   domain_private_zone = false
   # change to a valid domain name you created a route53 zone
   # aws route53 create-hosted-zone --name example.com --caller-reference "$(date)"
-  domain_name       = var.domain_name
-  argocd_subdomain  = "argocd"
-  argocd_host       = "${local.argocd_subdomain}.${local.domain_name}"
-  argocd_domain_arn = try(data.aws_route53_zone.domain_name[0].arn, "")
-  argo_workflows_subdomain  = "argoworkflows"
-  argo_workflows_host       = "${local.argo_workflows_subdomain}.${local.domain_name}"
+  domain_name              = var.domain_name
+  argocd_subdomain         = "argocd"
+  argocd_host              = "${local.argocd_subdomain}.${local.domain_name}"
+  argocd_domain_arn        = try(data.aws_route53_zone.domain_name[0].arn, "")
+  argo_workflows_subdomain = "argoworkflows"
+  argo_workflows_host      = "${local.argo_workflows_subdomain}.${local.domain_name}"
 
 
   aws_addons = {
@@ -70,11 +70,11 @@ locals {
     #enable_aws_gateway_api_controller            = true
     #enable_aws_ebs_csi_resources                 = true # generate gp2 and gp3 storage classes for ebs-csi
     #enable_aws_secrets_store_csi_driver_provider = true
-    enable_aws_argocd_ingress                     = true
-    enable_aws_argo_workflows_ingress             = true
+    enable_aws_argocd_ingress         = true
+    enable_aws_argo_workflows_ingress = true
   }
   oss_addons = {
-    enable_argocd                                 = false
+    enable_argocd = false
     #enable_argo_rollouts                         = true
     #enable_argo_events                           = true
     #enable_argo_workflows                        = true

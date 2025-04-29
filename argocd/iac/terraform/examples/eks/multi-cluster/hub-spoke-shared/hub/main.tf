@@ -107,7 +107,7 @@ locals {
       aws_vpc_id       = module.vpc.vpc_id
     },
     {
-      argocd_namespace    = local.argocd_namespace
+      argocd_namespace = local.argocd_namespace
     },
     {
       addons_repo_url      = local.gitops_addons_url
@@ -155,7 +155,7 @@ data "aws_iam_policy_document" "eks_assume" {
       type        = "Service"
       identifiers = ["pods.eks.amazonaws.com"]
     }
-    actions = ["sts:AssumeRole","sts:TagSession"]
+    actions = ["sts:AssumeRole", "sts:TagSession"]
   }
 }
 resource "aws_iam_role" "argocd_hub" {
@@ -166,7 +166,7 @@ data "aws_iam_policy_document" "aws_assume_policy" {
   statement {
     effect    = "Allow"
     resources = ["*"]
-    actions   = ["sts:AssumeRole","sts:TagSession"]
+    actions   = ["sts:AssumeRole", "sts:TagSession"]
   }
 }
 resource "aws_iam_policy" "aws_assume_policy" {
@@ -259,7 +259,7 @@ module "eks" {
   # EKS Addons
   cluster_addons = {
     eks-pod-identity-agent = {
-      most_recent = true
+      most_recent    = true
       before_compute = true
     }
     vpc-cni = {

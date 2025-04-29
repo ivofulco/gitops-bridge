@@ -30,10 +30,10 @@ variable "addons" {
     enable_aws_load_balancer_controller = true
     enable_metrics_server               = true
 
-    enable_argo_workflows               = true # set to false if enable_aws_argo_workflows_ingress = true
-    enable_aws_argo_workflows_ingress   = false # set to true if enable_argo_workflows is false
+    enable_argo_workflows             = true  # set to false if enable_aws_argo_workflows_ingress = true
+    enable_aws_argo_workflows_ingress = false # set to true if enable_argo_workflows is false
 
-    enable_external_dns                 = false # set to true if enable_aws_argo_workflows_ingress = true
+    enable_external_dns = false # set to true if enable_aws_argo_workflows_ingress = true
   }
 }
 # Addons Git

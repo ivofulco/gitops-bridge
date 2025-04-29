@@ -123,7 +123,7 @@ locals {
       addons_repo_revision = local.gitops_addons_revision
     },
     {
-      argocd_iam_role_arn           = module.argocd_irsa.iam_role_arn
+      argocd_iam_role_arn = module.argocd_irsa.iam_role_arn
     },
     {
       workload_repo_url      = local.gitops_workload_url
@@ -132,7 +132,7 @@ locals {
       workload_repo_revision = local.gitops_workload_revision
     },
     {
-      addons_chart_repository =  "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com"
+      addons_chart_repository = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com"
     }
   )
 
@@ -156,12 +156,12 @@ resource "kubernetes_secret" "git_secrets" {
   # Creating the secret by using data password to connect to private ECR
   for_each = {
     argocd-private-ecr-credentials = {
-      type                  = "helm"
-      url                   = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com"
-      name                  = "ecr-charts"
-      enableOCI             = true
-      username              = "AWS"
-      password              = data.aws_ecr_authorization_token.token.password
+      type      = "helm"
+      url       = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com"
+      name      = "ecr-charts"
+      enableOCI = true
+      username  = "AWS"
+      password  = data.aws_ecr_authorization_token.token.password
     }
   }
   metadata {
@@ -205,8 +205,8 @@ resource "aws_iam_policy" "irsa_policy" {
 
 data "aws_iam_policy_document" "irsa_policy" {
   statement {
-    effect    = "Allow"
-    actions   = [
+    effect = "Allow"
+    actions = [
       "ecr:*"
     ]
     resources = ["*"]

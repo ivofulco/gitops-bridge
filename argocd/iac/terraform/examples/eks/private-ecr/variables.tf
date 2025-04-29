@@ -18,7 +18,7 @@ variable "addons" {
   type        = any
   default = {
     # We are using External Secrets to refresh ECR Token
-    enable_external_secrets                      = true
+    enable_external_secrets = true
   }
 }
 # Addons Git
