@@ -187,7 +187,7 @@ module "gitops_bridge_bootstrap_hub" {
 ################################################################################
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
-    actions = ["sts:AssumeRole","sts:TagSession"]
+    actions = ["sts:AssumeRole", "sts:TagSession"]
     principals {
       type        = "AWS"
       identifiers = [data.terraform_remote_state.cluster_hub.outputs.argocd_iam_role_arn]
@@ -261,13 +261,13 @@ module "eks" {
   access_entries = {
     # One access entry with a policy associated
     example = {
-      principal_arn     = aws_iam_role.spoke.arn
+      principal_arn = aws_iam_role.spoke.arn
 
       policy_associations = {
         argocd = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
           access_scope = {
-            type       = "cluster"
+            type = "cluster"
           }
         }
       }

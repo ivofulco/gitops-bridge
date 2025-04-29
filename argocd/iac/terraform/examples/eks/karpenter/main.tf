@@ -146,7 +146,7 @@ module "gitops_bridge_bootstrap" {
   apps = local.argocd_apps
 
   # wait for fargate profile to be done before installing argocd
-  depends_on = [ module.eks ]
+  depends_on = [module.eks]
 }
 
 ################################################################################
