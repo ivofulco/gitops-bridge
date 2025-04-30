@@ -1,0 +1,24 @@
+apiVersion: v2
+name: istio-addon
+description: A Helm chart to deploy Istio via GitOps Bridge pattern
+type: application
+version: 0.1.0
+appVersion: "1.2x" # Specify Istio version compatibility, adjust as needed
+
+dependencies:
+  - name: base
+    version: "1.2x.x" # Use the correct chart version for Istio base
+    repository: "https://istio-release.storage.googleapis.com/charts"
+    alias: istio-base
+    condition: istio-base.enabled
+  - name: istiod
+    version: "1.2x.x" # Use the correct chart version for Istiod
+    repository: "https://istio-release.storage.googleapis.com/charts"
+    alias: istiod
+    condition: istiod.enabled
+  # Optional: Add gateway chart dependency if needed
+  # - name: gateway
+  #   version: "1.2x.x" # Use the correct chart version for gateway
+  #   repository: "https://istio-release.storage.googleapis.com/charts"
+  #   alias: istio-gateway
+  #   condition: istio-gateway.enabled

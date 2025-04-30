@@ -1,0 +1,21 @@
+# Values for the istio-addon chart
+
+# Enable Istio base components (CRDs)
+istio-base:
+  enabled: true
+  # Set the default revision for CRDs, matching the one used in helm install
+  defaultRevision: default 
+
+# Enable Istiod (control plane)
+istiod:
+  enabled: true
+  # Add any specific Istiod configurations here if needed
+  # Example: 
+  # pilot:
+  #   autoscaleEnabled: true
+
+# Optional: Enable Istio gateway
+# istio-gateway:
+#  enabled: false
+#  # Add any specific gateway configurations here if needed
+

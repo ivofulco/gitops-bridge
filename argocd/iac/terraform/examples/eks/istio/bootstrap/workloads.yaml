@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: istio-example
+  namespace: argocd
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+    - clusters:
+        selector:
+          matchExpressions:
+            - key: akuity.io/argo-cd-cluster-name
+              operator: NotIn
+              values: [in-cluster]
+  template:
+    metadata:
+      name: 'istio-example'
+    spec:
+      project: default
+      source:
+        repoURL: '{{metadata.annotations.workload_repo_url}}'
+        path: '{{metadata.annotations.workload_repo_basepath}}{{metadata.annotations.workload_repo_path}}'
+        targetRevision: '{{metadata.annotations.workload_repo_revision}}'
+        helm:
+          releaseName: 'istio-example'
+          # Values for Istio Helm chart can be added here if needed
+          # Example: 
+          # values: |
+          #   global:
+          #     region: '{{metadata.annotations.aws_region}}'
+      destination:
+        namespace: 'istio-system' # Changed namespace to istio-system
+        name: '{{name}}'
+      syncPolicy:
+        automated: {}
+        retry:
+          backoff:
+            duration: 1m
+          limit: 20
+        syncOptions:
+          - CreateNamespace=true
